@@ -16,7 +16,7 @@ const dbConn = mysql.createConnection({
     port: 3306  // <== ใส่ port ให้ถูกต้อง (default 3306, MAMP ใช้ 8889)
 });
 
-app.get("/students", (req, res)=>{
+app.get("/", (req, res)=>{
     //res.send("Hello World");
     res.sendFile(__dirname + "/students.html")
   } );
@@ -30,7 +30,7 @@ app.post("/students", async (req, res) => {
  
     const connection = await dbConn
     const rows = await connection.query("insert into students (name,age,phone,email) values('"+name+"','"+age+"',"+phone+",'"+email+"')")
-    res.status(201).send(rows)
+    res.status(201).send("<h1>เพิ่มข้อมูลเรียบร้อย</h1>");
  })
  
 app.listen(3000, ()=> {
